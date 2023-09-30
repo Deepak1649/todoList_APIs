@@ -22,7 +22,7 @@ class TodoTaskAPITest(TestCase):
         self.user = User.objects.create_user(**self.user_data)
         self.client.force_authenticate(user=self.user)
 
-    #REGISTER functin tests
+    #REGISTER function tests
 
     def test_user_register(self):
         # Define your test data for user registration
@@ -38,7 +38,7 @@ class TodoTaskAPITest(TestCase):
 
         for data in datas:
         
-        # Send a POST request to the 'user_register' view
+        # sending  a POST request to the 'user_register' view
             response = self.client.post(reverse('todolist_app:user_register'), data)
             
             # Assert the response status code and content
@@ -46,7 +46,7 @@ class TodoTaskAPITest(TestCase):
             self.assertEqual(response.data, {'message': 'User registered successfully.'})
             print (response.content)
             
-            # Check if the user has been created in the database
+            # checking if the user has been created in the database
             self.assertTrue(User.objects.filter(username='newuser').exists())
 
         
@@ -73,10 +73,8 @@ class TodoTaskAPITest(TestCase):
 
         for data in datas:
         
-        # Send a POST request to the 'user_register' view
+        # Sending a POST request to the 'user_register' view
             response = self.client.post(reverse('todolist_app:user_login'), data)
-            
-            # Assert the response status code and content
             self.assertEqual(response.status_code, status.HTTP_200_OK)
             print (response.content)
             self.assertEqual(response.data, {'message': 'Login successful.'})
@@ -110,7 +108,7 @@ class TodoTaskAPITest(TestCase):
         data = {
             'name': 'Test Task',
             'description': 'Test description',
-            'deadline': '2023-12-31T23:59:59Z',  # Replace this with a valid date-time format
+            'deadline': '2023-12-31T23:59:59Z',  #this should be in correct format of datetime
         }
 
         response = self.client.post(reverse('todolist_app:create_todo_task'), data, format='json')
@@ -134,7 +132,7 @@ class TodoTaskAPITest(TestCase):
         print (response.content)
 
     def test_create_todo_task_unauthenticated(self):
-        self.client.logout()  # Simulate an unauthenticated request
+        self.client.logout()  # Checking an unauthenticated request
         data = {
             'task_name': 'Test Task',
             'description': 'This is a test task.'
