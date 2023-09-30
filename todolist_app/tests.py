@@ -9,8 +9,7 @@ class TodoTaskAPITest(TestCase):
 
     def setup_forupdate(self):
         self.client = APIClient()
-        self.task = TodoTask.objects.create(user=self.user, name='Test Task', description='Test Description',
-                                            deadline='2023-10-01T12:00:00Z')
+        self.task = TodoTask.objects.create(user=self.user, name='Test Task', description='Test Description',deadline='2023-10-01T12:00:00Z')
 
 
     def setUp(self):
@@ -22,6 +21,8 @@ class TodoTaskAPITest(TestCase):
         }
         self.user = User.objects.create_user(**self.user_data)
         self.client.force_authenticate(user=self.user)
+
+    #REGISTER functin tests
 
     def test_user_register(self):
         # Define your test data for user registration
@@ -60,6 +61,8 @@ class TodoTaskAPITest(TestCase):
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(User.objects.count(), 1)
+
+    #User Login tests
 
     def test_user_login(self):
         # Define your test data for user registration
@@ -100,6 +103,7 @@ class TodoTaskAPITest(TestCase):
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
                 
+    #Create todo tasks tests
 
     def test_create_todo_task(self):
         # Define your test data for user registration
@@ -141,6 +145,7 @@ class TodoTaskAPITest(TestCase):
         self.assertEqual(TodoTask.objects.count(), 0)
         print(response.content)
 
+#Update tasks test
 
     def test_update_task_with_valid_data(self):
 

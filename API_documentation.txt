@@ -1,0 +1,44 @@
+API documentation:
+
+User Registration
+
+Endpoint: /app/register/
+Method: POST
+Description: Register a new user.
+Request: Provide username, password, and email in the request body.
+Response: "User registered successfully."
+
+
+User Login
+
+Endpoint: /app/login/
+Method: POST
+Description: Log in with existing credentials.
+Request: Provide username and password in the request body.
+Response: "Login successful."
+
+
+Create Todo Task
+
+Endpoint: /app/tasks/
+Method: POST
+Description: Create a new todo task for the authenticated user.
+Request: Provide task name, description, and deadline (in ISO 8601 format) in the request body.
+Response: Returns task details including ID, user ID, creation and modification timestamps, task name, description, and deadline.
+
+
+Update Todo Task
+
+Endpoint: /app/tasks/<task_id>/
+Method: PUT
+Description: Update an existing todo task for the authenticated user.
+Request: Provide updated task name, description, and deadline (in ISO 8601 format) in the request body.
+Response: Returns updated task details.
+
+
+Delete Todo Task
+
+Endpoint: /app/tasks/<task_id>/
+Method: DELETE
+Description: Delete an existing todo task for the authenticated user.
+Response: "Task deleted successfully."
